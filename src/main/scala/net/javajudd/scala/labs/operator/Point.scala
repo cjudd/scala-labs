@@ -1,36 +1,37 @@
 package net.javajudd.scala.labs.operator
 
-class Point(var x: Int, var y: Int) {
+trait Drawable {
+  def draw(): Unit
+}
 
-  def move(x: Int, y: Int): Unit = {
-    this.x = x
-    this.y = y
+case class Point(x: Int, y: Int) extends Drawable {
+
+  def draw(): Unit = {
+    for (i <- 1 until y) {
+      if(i < y - 1) println() else println(" " * x + ".")
+    }
   }
 
-  def +=(that: Point): Unit = {
-    this.x += that.x
-    this.y += that.y
+  def +(that: Point): Point = {
+    new Point(this.x + that.y, this.y + that.y)
   }
 
-  def -=(that: Point): Unit = {
-    this.x -= that.x
-    this.y -= that.y
+  def -(that: Point): Point = {
+    new Point(this.x - that.y, this.y - that.y)
   }
-  override def toString: String = s"(${x},${y})"
 
 }
 
 object Point extends App {
 
-  val point1 = new Point(1,2)
+  val point1 = Point(1,2)
   println(point1)
-  point1.move(4,5)
-  println(point1)
+  point1.draw()
 
-  val point2 = new Point(3,3)
-  point1 += point2
-  println(point1)
-  point1 -= point2
-  println(point1)
+  val point2 = Point(3,3)
 
+  val point3 = point1 + point2
+  println(point3)
+  val point4 = point1 - point2
+  println(point4)
 }

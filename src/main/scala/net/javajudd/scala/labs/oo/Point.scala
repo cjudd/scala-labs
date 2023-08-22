@@ -1,20 +1,20 @@
 package net.javajudd.scala.labs.oo
 
-class Point(var x: Int, var y: Int) {
+trait Drawable {
+  def draw(): Unit
+}
 
-  def move(x: Int, y: Int): Unit = {
-    this.x = x
-    this.y = y
+case class Point(x: Int, y: Int) extends Drawable {
+
+  def draw(): Unit = {
+    for (i <- 1 until y) {
+      if(i < y - 1) println() else println(" " * x + ".")
+    }
   }
-
-  override def toString: String = s"(${x},${y})"
-
 }
 
 object Point extends App {
-
-  val point = new Point(1,2)
+  val point = Point(4, 5)
   println(point)
-  point.move(4,5)
-  println(point)
+  point.draw()
 }
