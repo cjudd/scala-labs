@@ -29,9 +29,13 @@ object Point extends App {
   point1.draw()
 
   val point2 = Point(3,3)
+  println(point2)
+  point2.draw()
 
   val point3 = point1 + point2
   println(point3)
+  point3.draw()
+
   val point4 = point1 - point2
   println(point4)
 }
